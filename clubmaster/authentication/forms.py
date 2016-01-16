@@ -24,3 +24,11 @@ class OrganizationRegistration(forms.Form):
     description = forms.Textarea()
 
     fields = ['org_name', 'website', 'logo', 'contact', 'description']
+
+
+class LoginForm(forms.Form):
+    """
+    Define the Login fields.
+    """
+    email = forms.EmailField(label='Email Address')
+    password = forms.PasswordInput()
