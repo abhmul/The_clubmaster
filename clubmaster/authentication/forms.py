@@ -5,7 +5,7 @@ class UserRegistration(forms.Form):
     """
     Define the user registration fields.
     """
-    first_name = forms.CharField(label='First Name', max=18)
+    first_name = forms.CharField(label='First Name', max_length=18)
     last_name = forms.CharField(label='Last Name', max_length=30)
     email = forms.EmailField(label='Email Address', max_length=64)
     password = forms.PasswordInput()
