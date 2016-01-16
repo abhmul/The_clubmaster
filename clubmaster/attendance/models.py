@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import RegexValidator
 from organizations.models import Organization
 
-# Create your models here.
 class Member(models.Model):
     """
     This is a model that represent a member in the club.
