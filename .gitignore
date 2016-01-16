@@ -1,3 +1,4 @@
 *.pyc
 ./env
 clubmaster/clubmaster/settings.py
+*.pyc
