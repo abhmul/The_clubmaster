@@ -19,6 +19,7 @@ def user_registration(request):
 	title = 'Registration'
 	context = {}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return render(request, 'homepage/registration_template.html', context)
 =======
 	form = UserRegistration(request.POST or None)
@@ -96,3 +97,6 @@ def user_registration(request):
 
 
 >>>>>>> master
+=======
+	return render(request, 'homepage/index.html', context)
+>>>>>>> 0da3a5dab4e14659bd9ba4758c6086dac841b332
