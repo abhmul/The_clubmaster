@@ -11,4 +11,3 @@ class Organization(models.Model):
     logo = models.ImageField(blank=True)
     contact = models.EmailField()
     description = models.CharField(max=140)
-
