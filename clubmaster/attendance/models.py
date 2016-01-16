@@ -33,3 +33,24 @@ class Member(models.Model):
                       'organization': self.organization.name}
 
         return model_json
+
+
+class Event(models.Model):
+    """
+    This is a model that represents an Event of an organization.
+    """
+    name = models.CharField(max_length=64)
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    location = models.CharField()
+    description = models.CharField(max_length=140)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE())
+
+    def to_json(self):
+        """
+        This will take the current event and return the jsonified version of self.
+        :return: model_json
+        """
+
+        model_json = {'event_name': self.name, 'start_time':self.end_time, 'location': self.location,
+                      'description': self.description, 'organization': self.organization.name}
