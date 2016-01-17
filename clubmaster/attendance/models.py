@@ -18,7 +18,7 @@ class Member(models.Model):
     email = models.EmailField(max_length=100)
     phone_number = models.IntegerField(blank=True)
     college = models.CharField(max_length=10)
-    grad_year = models.IntegerField(max_length=4)
+    grad_year = models.IntegerField()
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def to_json(self):
@@ -29,8 +29,8 @@ class Member(models.Model):
         model_json = {'first_name': self.first_name, 'last_name': self.last_name, 'email': self.email,
                       'phone_number': self.phone_number, 'college': self.college, 'grad_year': self.grad_year,
                       'organization': self.organization.name}
-
         return model_json
+
     def to_list(self):
         """
         This will take the current member and return a list of all the attributes in order except organization
