@@ -23,11 +23,73 @@
 	                </div>
 	                {% endfor %}
                 </div>
+               	
+               	<button class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">Add Member</button>
+
+               	<div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="Memberadd">
+			        <div class="modal-dialog" role="document">
+			            <div class="modal-content">
+			                <div class="modal-header">
+			                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			                    <h4 class="modal-title" id="addMember">Add Member</h4>
+			                    <h5>{{errors}}</h5>
+			                </div>
+			                <div class="modal-body">
+			                    <form method = 'POST', action = ''> 
+			                        {% csrf_token %} {{form.non_field_errors}}
+			                      <div class="form-group">
+			                        {{form.first_name.errors}}
+			                        <label for="{{form.id.first_name}}">First Name:</label>
+			                        {{form.first_name}}
+			                      </div>
+			                      <div class="form-group">
+			                        {{form.last_name.errors}}
+			                        <label for="{{form.id.last_name}}" class="control-label">Last Name:</label>
+			                        {{form.last_name}}
+			                      </div>
+			                      <div class="form-group">
+			                        {{form.email.errors}}
+			                        <label for="{{form.id.email}}" class="control-label">Email:</label>
+			                        {{form.email}}
+			                      </div>
+			                      <div class="form-group">
+			                        {{form.phone_num.errors}}
+			                        <label for="{{form.id.phone_num}}" class="control-label">Phone Number:</label>
+			                        {{form.phone_num}}
+			                      </div>
+			                      <div class="form-group">
+			                        {{form.college.errors}}
+			                        <label for="{{form.id.college}}" class="control-label">College:</label>
+			                        {{form.college}}
+			                      </div>
+			                      <div class="form-group">
+			                        {{form.grad_year.errors}}
+			                        <label for="{{form.id.grad_year}}" class="control-label">Grad Year:</label>
+			                        {{form.grad_year}}
+			                      </div>
+			                      <div class="modal-footer">
+			                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                      <input type="submit" class="btn btn-primary"></input>
+			                      </div>
+			                    </form>
+			                </div>
+			            </div>  
+			        </div>
+			    </div>
+
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript"> 
+$(document).ready(function() {
+    //alert('hi');
+    $('.modal').on('hidden.bs.modal', function(){
+        $(this).find('form')[0].reset();
+    });
+ });
+</script>
 
 {% endblock %}
