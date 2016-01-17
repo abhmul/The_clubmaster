@@ -270,6 +270,11 @@
         </div>
     </section>
 
+    <script>
+        $('#registrationModal').on('hidden.bs.modal', function(){
+            $(this).find('form')[0].reset();
+        });
+    </script>
     <!-- jQuery -->
     <script src="{% static "js/jquery.js" %}"></script>
 

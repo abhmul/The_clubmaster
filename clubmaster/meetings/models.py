@@ -8,7 +8,7 @@ class Meeting(models.Model):
 
     date = models.DateTimeField()
     name = models.CharField(max_length=24)
-    files = models.ManyToManyField(MeetingFile)
+
 
 
 class MeetingFile(models.Model):

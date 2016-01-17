@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'organizations',
+    'attendance',
+    'calendar_sync',
+    'meetings',
+    'social_media',
+    'authentication',
     'homepage',
     'django.contrib.admin',
     'django.contrib.auth',

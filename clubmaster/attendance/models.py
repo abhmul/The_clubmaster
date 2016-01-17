@@ -15,13 +15,11 @@ class Member(models.Model):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField(validators=[
-        RegexValidator(regex="*@rice.edu", message="Not a valid Rice Email.")
-    ])
+    email = models.EmailField(max_length=100)
     phone_number = models.IntegerField(blank=True)
-    college = models.CharField(max_length=10, choices=COLLEGES)
+    college = models.CharField(max_length=10)
     grad_year = models.IntegerField(max_length=4)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE())
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def to_json(self):
         """
@@ -42,9 +40,9 @@ class Event(models.Model):
     name = models.CharField(max_length=64)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    location = models.CharField()
+    location = models.CharField(max_length=100)
     description = models.CharField(max_length=140)
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE())
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def to_json(self):
         """
