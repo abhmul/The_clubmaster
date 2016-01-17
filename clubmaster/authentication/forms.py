@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 
 def validate_pass_length(value):
     if len(value) < 8:
@@ -7,15 +8,22 @@ def validate_pass_length(value):
 def validate_empty(value):
     if not value:
         raise ValidationError("This field is required.")
+def validate_pass_match(password, passconfirm):
+    if password != passconfirm:
+        raise ValidationError("Passwords do not match.")
+
 
 class UserRegistration(forms.Form):
     """
     Define the user and organization registration fields.
     """
+
+    pass_validator = MinLengthValidator(8)
+
     first_name = forms.CharField(validators=[validate_empty],label='First Name', max_length=18, widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(label='Last Name', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(label='Email Address', max_length=64, widget=forms.EmailInput(attrs={'class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password = forms.CharField(validators=[pass_validator], widget=forms.PasswordInput(attrs={'class':'form-control'}))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     org_name = forms.CharField(label='Organization Name', max_length=32, widget=forms.TextInput(attrs={'class':'form-control'}))
@@ -31,6 +39,8 @@ class LoginForm(forms.Form):
     """
     Define the Login fields.
     """
-    email = forms.EmailField(label='Email Address')
-    password = forms.PasswordInput()
+    username = forms.EmailField(label='Email Address', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    org_name = forms.CharField(label="Organization Name", widget=forms.TextInput(attrs={'class': 'form-control'}))
+
 

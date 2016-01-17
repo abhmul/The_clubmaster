@@ -62,7 +62,7 @@
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Login</a>
+                        <a class="page-scroll" data-toggle="modal" data-target="#loginModal">Login</a>
                     </li>
                 </ul>
             </div>
@@ -99,6 +99,42 @@
       <div class="modal-dialog" role="document">
         {% block registration %}{% endblock %}
       </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="login">Login Form</h4>
+                    <h5>{{errors}}</h5>
+                </div>
+                <div class="modal-body">
+                    <form method = 'POST', action = ''> 
+                        {% csrf_token %} {{form.non_field_errors}}
+                      <div class="form-group">
+                        {{form.username.errors}}
+                        <label for="{{form.id.username}}">Username (email):</label>
+                        {{form.first_name}}
+                      </div>
+                      <div class="form-group">
+                        {{form.last_name.errors}}
+                        <label for="{{form.id.password}}" class="control-label">Password:</label>
+                        {{form.last_name}}
+                      </div>
+                      <div class="form-group">
+                        {{form.email.errors}}
+                        <label for="{{form.id.org_name}}" class="control-label">Organization Name:</label>
+                        {{form.email}}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <input type="submit" class="btn btn-primary"></input>
+                      </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
     </div>
 
     <section id="services">
@@ -270,14 +306,19 @@
         </div>
     </section>
 
-    <script>
-        $('#registrationModal').on('hidden.bs.modal', function(){
+    <script type="text/javascript"> 
+    $(document).ready(function() {
+        alert('hi');
+        $('.container').addClass('animated shake');
+        $('.modal').on('hidden.bs.modal', function(){
             $(this).find('form')[0].reset();
         });
+     });
     </script>
+
     <!-- jQuery -->
     <script src="{% static "js/jquery.js" %}"></script>
-
+    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "js/bootstrap.min.js"%}"></script>
 

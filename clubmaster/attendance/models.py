@@ -31,6 +31,12 @@ class Member(models.Model):
                       'organization': self.organization.name}
 
         return model_json
+    def to_list(self):
+        """
+        This will take the current member and return a list of all the attributes in order except organization
+        """
+        return [self.first_name, self.last_name, self.email, self.phone_number, 
+                self.college, self.grad_year]
 
 
 class Event(models.Model):

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from authentication.forms import UserRegistration
+from authentication.forms import UserRegistration, LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -24,11 +24,13 @@ def user_registration(request):
     
 
     form = UserRegistration(request.POST or None)
-
+    login_form = LoginForm(request.POST or None)
     context = {
         'form':form,
-        'title':title,
+        'login_form': login_form,
+        'title':title
     }
+
     # print form.is_valid()
     if form.is_valid():
         """
@@ -84,14 +86,16 @@ def user_registration(request):
             auth_user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
             login(request, auth_user)
             print "hey1"
-            return render(request, 'homepage/registration_template.html', context)
+            return redirect('/dashboard/', context)
         print "hey2"
         return render(request, 'homepage/registration_template.html', context)
     print "hey3"
     return render(request, 'homepage/registration_template.html', context)
 
-def dashboard_test(request):
+def dashboard(request):
     context = {}
-    return render(request, 'homepage/dashboard.html', context)
+    return render(request, 'homepage/dashboard_home.html', context)
+
+
 
 
