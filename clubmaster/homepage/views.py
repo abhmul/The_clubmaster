@@ -85,11 +85,12 @@ def user_registration(request):
 
             auth_user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
             login(request, auth_user)
-            print "hey1"
             return redirect('/dashboard/', context)
-        print "hey2"
         return render(request, 'homepage/registration_template.html', context)
-    print "hey3"
+    if login_form.is_valid():
+        auth_user = authenticate(username=form.cleaned_data['email'], password=form.cleaned_data['password'])
+        login(request, auth_user)
+        return redirect('/dashboard/', context)
     return render(request, 'homepage/registration_template.html', context)
 
 def dashboard(request):

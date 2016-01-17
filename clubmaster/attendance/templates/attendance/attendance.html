@@ -24,7 +24,7 @@
 	                {% endfor %}
                 </div>
                	
-               	<button class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal">Add Member</button>
+               	<button class="btn btn-primary" data-toggle="modal" data-target="#addMemberModal" onclick="clearForm()">Add Member</button>
 
                	<div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-labelledby="Memberadd">
 			        <div class="modal-dialog" role="document">
@@ -35,7 +35,7 @@
 			                    <h5>{{errors}}</h5>
 			                </div>
 			                <div class="modal-body">
-			                    <form method = 'POST', action = ''> 
+			                    <form  id="memberForm" method = 'POST' action = ''> 
 			                        {% csrf_token %} {{form.non_field_errors}}
 			                      <div class="form-group">
 			                        {{form.first_name.errors}}
@@ -84,12 +84,20 @@
 </div>
 
 <script type="text/javascript"> 
-$(document).ready(function() {
-    //alert('hi');
-    $('.modal').on('hidden.bs.modal', function(){
-        $(this).find('form')[0].reset();
-    });
- });
+// $(document).ready(function() {
+//     //alert('hi');
+//     $('.modal').on('hidden.bs.modal', function(){
+//     	alert('hi');
+//         $(this).find('form')[0].reset();
+//         $('body').removeData('bs.modal');
+//     });
+//  });
+function clearForm() {
+	// $('#memberForm').find('input:text, input:password, select, textarea').val('');
+ //    $('#memberForm').find('input:radio, input:checkbox').prop('checked', false);
+    $('form').find('input[type=text], input[type=password], input[type=number], input[type=email], textarea').val('');
+}
+
 </script>
 
 {% endblock %}
