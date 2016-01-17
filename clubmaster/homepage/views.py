@@ -72,7 +72,7 @@ def user_registration(request):
                                                   password=form.cleaned_data['password']
                                                   )
                 print "user created"
-                Organization(identifier=form.cleaned_data['org_name'], name =form.cleaned_data['org_name'], website = form.cleaned_data['website'], contact = form.cleaned_data['contact'], description = form.cleaned_data['description']).save()
+                Organization(identifier=form.cleaned_data['org_name'], name =form.cleaned_data['org_name'], website = form.cleaned_data['website'], contact = form.cleaned_data['contact'], description = form.cleaned_data['description'], user=user).save()
                 
             except IntegrityError:  # prevents a user from registering a previously used username
                 error = 'Username already taken'

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Organization(models.Model):
     """
@@ -11,3 +11,4 @@ class Organization(models.Model):
     # logo = models.ImageField(blank=True)
     contact = models.EmailField()
     description = models.CharField(max_length=140)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
